@@ -1,0 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SceneName : MonoBehaviour
+{
+    //Ç±Ç±âΩÇ©Ç¢ÇƒÇÈÇÒÇæÇÎÇ§ÇÀÅOÅO
+   public  enum GameName
+    {
+        Scene1,
+        Scene2,
+        Scene3,
+    }
+       
+}
