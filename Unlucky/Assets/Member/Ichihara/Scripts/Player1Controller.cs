@@ -20,11 +20,13 @@ public class Player1Controller : PlayerBase
     // Update is called once per frame
     void Update()
     {
+        ChangeSprite();
         DisidePlayerPoint();
         if(_isEntried == false)
         {
             Move();
         }
+        ChangeSprite();
     }
 
     protected override void Move()
@@ -91,7 +93,6 @@ public class Player1Controller : PlayerBase
         {
             _isEntried = true;
         }
-        Debug.Log($"{_isEntried}");
     }
 
     protected override int Damage(GameObject obj)
@@ -99,8 +100,24 @@ public class Player1Controller : PlayerBase
         throw new System.NotImplementedException();
     }
 
-    protected override void ChangeSprite()
+    protected override void ChangeSprite(int spriteNum = 0)
     {
-        throw new System.NotImplementedException();
+        if(spriteNum >= 0 && spriteNum < _playerSprites.Count - 1)
+        {
+            switch (_endurenceValue)
+            {
+                case 100:
+                    gameObject.GetComponent<SpriteRenderer>().sprite = _playerSprites[spriteNum];
+                    break;
+                case 100 - 31:
+                    gameObject.GetComponent<SpriteRenderer>().sprite = _playerSprites[spriteNum++];
+                    break;
+                case 100 - 31 * 2:
+                    gameObject.GetComponent<SpriteRenderer>().sprite = _playerSprites[spriteNum += 2];
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
