@@ -15,6 +15,8 @@ public class Player2Controller : PlayerBase
     private KeyCode _entryKey = KeyCode.K;
     #endregion
 
+    private Player1Controller _player1Controller = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class Player2Controller : PlayerBase
         var sprite = GetComponent<SpriteRenderer>();
         var spriteNum = _playerSprites.FindIndex(item => item == sprite.sprite);
         sprite.sprite = ChangeSprite(spriteNum);
+        _player1Controller = PlayerSpawn.Instance.Player1.GetComponent<Player1Controller>();
     }
 
     // Update is called once per frame
@@ -41,13 +44,12 @@ public class Player2Controller : PlayerBase
     {
         if (Input.GetKeyDown(_moveLeftKey))
         {
-            var player1 = GameObject.Find(PlayerSpawn.Instance.Player1.name).GetComponent<Player1Controller>();
             switch (_gamePosition)
             {
                 case 0:
                     break;
                 case 1:
-                    if ((_gamePosition - 1) == player1.GamePosition)
+                    if ((_gamePosition - 1) == _player1Controller.GamePosition)
                     {
                         return;
                     }
@@ -56,7 +58,7 @@ public class Player2Controller : PlayerBase
                     break;
                 case 2:
                     _gamePosition--;
-                    if (_gamePosition == player1.GamePosition)
+                    if (_gamePosition == _player1Controller.GamePosition)
                     {
                         _gamePosition--;
                     }
@@ -68,19 +70,18 @@ public class Player2Controller : PlayerBase
         }
         else if (Input.GetKeyDown(_moveRightKey))
         {
-            var player1 = GameObject.Find(PlayerSpawn.Instance.Player1.name).GetComponent<Player1Controller>();
             switch (_gamePosition)
             {
                 case 0:
                     _gamePosition++;
-                    if (_gamePosition == player1.GamePosition)
+                    if (_gamePosition == _player1Controller.GamePosition)
                     {
                         _gamePosition++;
                     }
                     transform.position = PlayerSpawn.Instance.PlayerPoints[_gamePosition].transform.position;
                     break;
                 case 1:
-                    if ((_gamePosition + 1) == player1.GamePosition)
+                    if ((_gamePosition + 1) == _player1Controller.GamePosition)
                     {
                         return;
                     }
