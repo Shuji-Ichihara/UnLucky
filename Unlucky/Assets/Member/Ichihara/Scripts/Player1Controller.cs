@@ -15,13 +15,16 @@ public class Player1Controller : PlayerBase
     private KeyCode _entryKey = KeyCode.S;
     #endregion
 
+    // プレイヤーの蓄積ダメージ
+    public static int AccumulatedDamage = 0;
+    // 相手プレイヤーの情報
     private Player2Controller _player2Controller = null;
 
     // Start is called before the first frame update
     void Start()
     {
         // DEBUG : sprite 切り替え用
-        _accumulatedDamage = 50;
+        AccumulatedDamage = 50;
         
         _isEntried = false; // レーン選択になる為
         var sprite = GetComponent<SpriteRenderer>();
@@ -115,15 +118,15 @@ public class Player1Controller : PlayerBase
         var nowSprite = GetComponent<SpriteRenderer>().sprite;
         if(spriteNum >= 0 && spriteNum < _playerSprites.Count - 1)
         {
-            if(_accumulatedDamage >= 0 && _accumulatedDamage < 30)
+            if(AccumulatedDamage >= 0 && AccumulatedDamage < 30)
             {
                 nowSprite = _playerSprites[0];
             }
-            else if(_accumulatedDamage >= 30 && _accumulatedDamage < 70)
+            else if(AccumulatedDamage >= 30 && AccumulatedDamage < 70)
             {
                 nowSprite = _playerSprites[1];
             }
-            else if(_accumulatedDamage >= 70)
+            else if(AccumulatedDamage >= 70)
             {
                 nowSprite = _playerSprites[2];
             }
