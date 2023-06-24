@@ -12,9 +12,13 @@ public class test : MonoBehaviour
     //  ŒÄ‚Ño‚µ•ûAŠæ’£‚Á‚Ä‚ËOO
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            
+            if (Input.GetKeyDown(KeyCode.A))
             {
-            scene.LoadScene(SceneName.GameName.Scene2);
+                scene.LoadScene(SceneName.GameName.Scene2);
+            }
         }
         
     }
