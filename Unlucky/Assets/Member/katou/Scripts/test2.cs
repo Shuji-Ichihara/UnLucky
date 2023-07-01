@@ -14,7 +14,7 @@ public class test2 : MonoBehaviour
         Debug.Log("second");
         if(second > 10)
         {
-            scene.LoadScene(SceneName.GameName.Scene3);
+            scene.LoadScene(SceneName.GameName.Scene2);
         }
     }
 }

@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Member/Masato/Scenes/PlayScene.unity
     guid: 40aa8f74402d4404eb244f4f8f096927
+  - enabled: 1
+    path: Assets/Member/Masato/Scenes/PlayScene2.unity
+    guid: 3e004c25809c959449aa29e8eda87b4d
+  - enabled: 1
+    path: Assets/Member/Masato/Scenes/PlayScene3.unity
+    guid: 33fa17e03d6238e4a980c58b0ffbdb1b
   m_configObjects: {}
