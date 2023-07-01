@@ -4,43 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
-    path: Assets/Member/katou/Scene/Scene1.unity
-    guid: 3519e2557a42bfe479c93ad0d5324ec9
-  - enabled: 0
-    path: Assets/Member/katou/Scene/Scene2.unity
-    guid: 09fccc674d01bf143851c74c0bedf284
-  - enabled: 0
-    path: Assets/Member/katou/Scene/Scene3.unity
-    guid: 8cfdfdfde8cf1214ba55774c3a04ff89
-  - enabled: 1
-<<<<<<< HEAD
-    path: Assets/Member/Yuta/Scenes/Title.unity
-    guid: da1409d56e39afb40941399c223b1a33
-  - enabled: 1
-    path: Assets/Member/Masato/Scenes/PlayScene.unity
-    guid: 40aa8f74402d4404eb244f4f8f096927
-  - enabled: 1
-    path: Assets/Member/Masato/Scenes/PlayScene2.unity
-    guid: 3e004c25809c959449aa29e8eda87b4d
-  - enabled: 1
-    path: Assets/Member/Masato/Scenes/PlayScene3.unity
-    guid: 33fa17e03d6238e4a980c58b0ffbdb1b
-=======
-    path: Assets/Member/Ichihara/Scenes/TestScene.unity
-    guid: 89725de148c9e7946843df2f0ff43e86
-  - enabled: 1
-    path: Assets/Member/Yuta/Scenes/Win_P1.unity
-    guid: 899a28cdc15d65e4889bafcfec6f2c50
-  - enabled: 1
-    path: Assets/Member/Yuta/Scenes/Win_P2.unity
-    guid: 311ef1d4378f55043a17b043ff1a85a3
-  - enabled: 1
-    path: Assets/Member/Ichihara/Scenes/TestScene2.unity
-    guid: 86d59dca89c50fa498ee7da107fa6ad4
->>>>>>> origin/feature/keisuke
+  m_Scenes: []
   m_configObjects: {}
