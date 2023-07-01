@@ -16,13 +16,15 @@ public class GameManger : MonoBehaviour
     private List<GameObject> _map3Objects = new List<GameObject>();
 
     [SerializeField]
-    private int SmallDamage = 10;
+    private int _smallDamage = 10;
     [SerializeField]
-    private int LargeDamage = 30;
+    private int _largeDamage = 30;
+
+    private int _unluckyNunber = 0;
 
     private void Awake()
     {
-        GenerateMap(_map1Objects);
+        _unluckyNunber = GenerateMap(_map1Objects);
     }
     void Start()
     {
@@ -32,6 +34,7 @@ public class GameManger : MonoBehaviour
     void Update()
     {
         PlayerDamage();
+        CalculateDamage();
     }
 
     /// <summary>
@@ -39,18 +42,17 @@ public class GameManger : MonoBehaviour
     /// </summary>
     /// <param name="mapObjects">生成するマップリスト</param>
     /// <returns></returns>
-    private void GenerateMap(List<GameObject> mapObjects)
+    private int GenerateMap(List<GameObject> mapObjects)
     {
         int num = Random.Range(0, mapObjects.Count);
         Instantiate(mapObjects[num], Vector3.zero, Quaternion.identity);
+        return num;
     }
 
     private void PlayerDamage()
     {
         if (_player1Controller.IsEntried == true)
         {
-            Player1Controller.AccumulatedDamage += 10;
-
             switch (_player1Controller.GamePosition)
             {
                 case 0:
@@ -71,8 +73,6 @@ public class GameManger : MonoBehaviour
         }
         if (_player2Controller.IsEntried == true)
         {
-            Player2Controller.AccumulatedDamage += 10;
-
             switch (_player2Controller.GamePosition)
             {
                 case 0:
@@ -90,6 +90,18 @@ public class GameManger : MonoBehaviour
                 default:
                     break;
             }
+        }
+    }
+
+    private void CalculateDamage()
+    {
+        if (_unluckyNunber == _player1Controller.GamePosition)
+        {
+            Player1Controller.AccumulatedDamage += _largeDamage;
+        }
+        else
+        {
+            Player1Controller.AccumulatedDamage += _smallDamage;
         }
     }
 
