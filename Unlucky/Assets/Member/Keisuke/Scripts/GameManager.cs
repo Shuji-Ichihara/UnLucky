@@ -98,11 +98,13 @@ public class GameManager : MonoBehaviour
 
     private void CalculateDamagePlayer1()
     {
+        
         if (_unluckyNunber == _player1Controller.GamePosition)
         {
             Player1Controller.AccumulatedDamage += _largeDamage;
             Debug.Log($"{Player1Controller.AccumulatedDamage} : HP {100 - Player1Controller.AccumulatedDamage}");
         }
+        
         else
         {
             Player1Controller.AccumulatedDamage += _smallDamage;
