@@ -23,9 +23,6 @@ public class Player2Controller : PlayerBase
     // Start is called before the first frame update
     void Start()
     {
-        // DEBUG : スプライト切り替え用
-        AccumulatedDamage = 10;
-
         _isEntried = false; // レーン選択になる為
         var sprite = GetComponent<SpriteRenderer>();
         var spriteNum = _playerSprites.FindIndex(item => item == sprite.sprite);
