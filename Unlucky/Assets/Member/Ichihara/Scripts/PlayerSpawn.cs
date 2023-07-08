@@ -23,6 +23,12 @@ public class PlayerSpawn : SingletonMonoBehaviour<PlayerSpawn>
         DontDestroyOnLoad(this);
     }
 
+    /// <summary>
+    /// シーン読み込み時に走るデリゲート
+    /// ゲームシーン以外は読み込まない処理を他のスクリプトで記述してほしい。
+    /// </summary>
+    /// <param name="scene">デリゲート型の引数</param>
+    /// <param name="mode">デリゲート型の引数</param>
      public void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
         // TODO : タイトル,リザルトのシーン名に変更
