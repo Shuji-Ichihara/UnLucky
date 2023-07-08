@@ -103,6 +103,16 @@ public class GameManger : MonoBehaviour
         {
             Player1Controller.AccumulatedDamage += _smallDamage;
         }
+
+        if (_unluckyNunber == _player1Controller.GamePosition)
+        {
+            Player2Controller.AccumulatedDamage += _largeDamage;
+        }
+        else
+        {
+            Player2Controller.AccumulatedDamage += _smallDamage;
+        }
+
     }
 
 }
