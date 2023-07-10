@@ -23,11 +23,6 @@ public class Player2Controller : PlayerBase
     // Start is called before the first frame update
     void Start()
     {
-        // 最初のステージになったら、蓄積ダメージを初期化
-        if (MonoGameManager.Instance.SceneState == MonoGameManager.GameSceneState.Stage1)
-        {
-            AccumulatedDamage = 0;
-        }
         MonoGameManager.Instance.Player2Controller = this;
         // レーン選択になる為
         _isEntried = false;
