@@ -127,13 +127,11 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         if (_unluckyNunber == Player1Controller.GamePosition)
         {
             Player1Controller.AccumulatedDamage += _damages[stageNumber].LargeDamage;
-            Debug.Log($"{Player1Controller.AccumulatedDamage} : HP {100 - Player1Controller.AccumulatedDamage}");
         }
         // 小ダメージの場合
         else
         {
             Player1Controller.AccumulatedDamage += _damages[stageNumber].SmallDamage;
-            Debug.Log($"{Player1Controller.AccumulatedDamage} : HP {100 - Player1Controller.AccumulatedDamage}");
         }
     }
 
@@ -147,12 +145,10 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         if (_unluckyNunber == Player2Controller.GamePosition)
         {
             Player2Controller.AccumulatedDamage += _damages[stageNumber].LargeDamage;
-            //Debug.Log($"{Player2Controller.AccumulatedDamage}  : HP  {100 - Player2Controller.AccumulatedDamage}");
         }
         else
         {
             Player2Controller.AccumulatedDamage += _damages[stageNumber].SmallDamage;
-            //Debug.Log($"{Player2Controller.AccumulatedDamage}  : HP  {100 - Player2Controller.AccumulatedDamage}");
         }
     }
 
@@ -183,6 +179,12 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
                 break;
             default:
                 break;
+        }
+        // 最初のステージになったら、蓄積ダメージを初期化
+        if (stageNumber == (int)GameSceneState.Stage1)
+        {
+            Player1Controller.AccumulatedDamage = 0;
+            Player2Controller.AccumulatedDamage = 0;
         }
     }
 
