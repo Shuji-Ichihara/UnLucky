@@ -16,6 +16,7 @@ public struct Damage
 
 public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
 {
+    // ステージ管理
     public enum GameSceneState
     {
         Stage1,
@@ -23,7 +24,8 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         Stage3,
     }
 
-    private GameSceneState _gameSceneState = GameSceneState.Stage1;
+    private GameSceneState _sceneState = GameSceneState.Stage1;
+    public GameSceneState SceneState => _sceneState;
 
     // プレイヤーキャラ
     [System.NonSerialized]
@@ -40,7 +42,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     //　ダメージ計算
     [SerializeField]
     private List<Damage> _damages = new List<Damage>();
-
+    // はずれ番号
     private int _unluckyNunber = 0;
     // ダメージの計算が完了したかをチェック
     private bool _checkDamagePlayer1 = false;
@@ -119,7 +121,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     /// </summary>
     private void CalculateDamagePlayer1()
     {
-        int stageNumber = (int)_gameSceneState;
+        int stageNumber = (int)_sceneState;
         stageNumber %= _damages.Count;
         // 大ダメージの場合
         if (_unluckyNunber == Player1Controller.GamePosition)
@@ -140,17 +142,17 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     /// </summary>
     private void CalculateDamagePlayer2()
     {
-        int stageNumber = (int)_gameSceneState;
+        int stageNumber = (int)_sceneState;
         stageNumber %= _damages.Count;
         if (_unluckyNunber == Player2Controller.GamePosition)
         {
             Player2Controller.AccumulatedDamage += _damages[stageNumber].LargeDamage;
-            Debug.Log($"{Player2Controller.AccumulatedDamage}  : HP  {100 - Player2Controller.AccumulatedDamage}");
+            //Debug.Log($"{Player2Controller.AccumulatedDamage}  : HP  {100 - Player2Controller.AccumulatedDamage}");
         }
         else
         {
             Player2Controller.AccumulatedDamage += _damages[stageNumber].SmallDamage;
-            Debug.Log($"{Player2Controller.AccumulatedDamage}  : HP  {100 - Player2Controller.AccumulatedDamage}");
+            //Debug.Log($"{Player2Controller.AccumulatedDamage}  : HP  {100 - Player2Controller.AccumulatedDamage}");
         }
     }
 
@@ -166,7 +168,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         _checkDamagePlayer1 = false;
         _checkDamagePlayer2 = false;
         // 生成するマップ決め
-        int stageNumber = (int)_gameSceneState;
+        int stageNumber = (int)_sceneState;
         stageNumber %= _damages.Count;
         switch (stageNumber)
         {
@@ -190,7 +192,8 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     /// <param name="scene"></param>
     private void OnSceneUnLoaded(UnityEngine.SceneManagement.Scene scene)
     {
-        _gameSceneState++;
+        // ステート更新
+        _sceneState++;
     }
 }
 
