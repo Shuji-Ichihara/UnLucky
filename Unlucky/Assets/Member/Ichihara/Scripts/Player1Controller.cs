@@ -106,11 +106,6 @@ public class Player1Controller : PlayerBase
         }
     }
 
-    protected override int Damage(GameObject obj)
-    {
-        throw new System.NotImplementedException();
-    }
-
     // シーン読み込み時のみに使用する前提
     protected override Sprite ChangeSprite(int spriteNum = 0)
     {

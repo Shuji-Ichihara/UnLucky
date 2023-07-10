@@ -106,11 +106,6 @@ public class Player2Controller : PlayerBase
         }
     }
 
-    protected override int Damage(GameObject obj)
-    {
-        throw new System.NotImplementedException();
-    }
-
     protected override Sprite ChangeSprite(int spriteNum = 0)
     {
         var nowSprite = GetComponent<SpriteRenderer>().sprite;
