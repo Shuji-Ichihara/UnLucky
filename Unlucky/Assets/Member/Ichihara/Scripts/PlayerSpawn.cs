@@ -21,6 +21,7 @@ public class PlayerSpawn : SingletonMonoBehaviour<PlayerSpawn>
     new private void Awake()
     {
         DontDestroyOnLoad(this);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     /// <summary>
