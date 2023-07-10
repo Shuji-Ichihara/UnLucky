@@ -22,10 +22,12 @@ public class Player1Controller : PlayerBase
 
     // Start is called before the first frame update
     void Start()
-    {        
-        _isEntried = false; // レーン選択になる為
-        var sprite = GetComponent<SpriteRenderer>();
-        var spriteNum = _playerSprites.FindIndex(item => item == sprite.sprite);
+    {
+        MonoGameManager.Instance.Player1Controller = this;
+        // レーン選択になる為
+        _isEntried = false; 
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        int spriteNum = _playerSprites.FindIndex(item => item == sprite.sprite);
         sprite.sprite = ChangeSprite(spriteNum);
         _player2Controller = PlayerSpawn.Instance.Player2.GetComponent<Player2Controller>();
     }
@@ -113,17 +115,17 @@ public class Player1Controller : PlayerBase
     protected override Sprite ChangeSprite(int spriteNum = 0)
     {
         var nowSprite = GetComponent<SpriteRenderer>().sprite;
-        if(spriteNum >= 0 && spriteNum < _playerSprites.Count - 1)
+        if (spriteNum >= 0 && spriteNum < _playerSprites.Count - 1)
         {
-            if(AccumulatedDamage >= 0 && AccumulatedDamage < 30)
+            if (AccumulatedDamage >= 0 && AccumulatedDamage < 30)
             {
                 nowSprite = _playerSprites[0];
             }
-            else if(AccumulatedDamage >= 30 && AccumulatedDamage < 70)
+            else if (AccumulatedDamage >= 30 && AccumulatedDamage < 70)
             {
                 nowSprite = _playerSprites[1];
             }
-            else if(AccumulatedDamage >= 70)
+            else if (AccumulatedDamage >= 70)
             {
                 nowSprite = _playerSprites[2];
             }
