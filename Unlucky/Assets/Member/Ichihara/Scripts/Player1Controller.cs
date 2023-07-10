@@ -23,9 +23,14 @@ public class Player1Controller : PlayerBase
     // Start is called before the first frame update
     void Start()
     {
+        // 最初のステージになったら、蓄積ダメージを初期化
+        if (MonoGameManager.Instance.SceneState == MonoGameManager.GameSceneState.Stage1)
+        {
+            AccumulatedDamage = 0;
+        }
         MonoGameManager.Instance.Player1Controller = this;
         // レーン選択になる為
-        _isEntried = false; 
+        _isEntried = false;
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         int spriteNum = _playerSprites.FindIndex(item => item == sprite.sprite);
         sprite.sprite = ChangeSprite(spriteNum);
