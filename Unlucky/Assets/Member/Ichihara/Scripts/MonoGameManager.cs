@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -23,9 +22,8 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         Stage2,
         Stage3,
     }
-
+    // 現在のステート
     private GameSceneState _sceneState = GameSceneState.Stage1;
-    public GameSceneState SceneState => _sceneState;
 
     // プレイヤーキャラ
     [System.NonSerialized]
@@ -159,7 +157,14 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     /// <param name="mode"></param>
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
-        // シーンが切り替わった時に Update が呼び出されない為
+        // TODO : タイトル,リザルトのシーン名に変更
+        if (SceneManager.GetActiveScene().name == "TitleScene"
+            || SceneManager.GetActiveScene().name == "ResultScene")
+        {
+            return;
+        }
+
+        // シーンが切り替わった時に Start が呼び出されない為
         // このタイミングで初期化する
         _checkDamagePlayer1 = false;
         _checkDamagePlayer2 = false;
@@ -194,6 +199,12 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     /// <param name="scene"></param>
     private void OnSceneUnLoaded(UnityEngine.SceneManagement.Scene scene)
     {
+        // TODO : タイトル,リザルトのシーン名に変更
+        if (SceneManager.GetActiveScene().name == "TitleScene"
+            || SceneManager.GetActiveScene().name == "ResultScene")
+        {
+            return;
+        }
         // ステート更新
         _sceneState++;
     }

@@ -36,6 +36,7 @@ public class PlayerSpawn : SingletonMonoBehaviour<PlayerSpawn>
         if (SceneManager.GetActiveScene().name == "TitleScene"
             || SceneManager.GetActiveScene().name == "ResultScene")
         {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             return;
         }
         InitGame();
