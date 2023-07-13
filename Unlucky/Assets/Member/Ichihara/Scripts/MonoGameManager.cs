@@ -26,10 +26,8 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     private GameSceneState _sceneState = GameSceneState.Stage1;
 
     // プレイヤーキャラ
-    [System.NonSerialized]
-    public Player1Controller Player1Controller;
-    [System.NonSerialized]
-    public Player2Controller Player2Controller;
+    public static Player1Controller Player1Controller { get; set; }
+    public static Player2Controller Player2Controller { get; set; }
     //　マップ１～3を割り当てる
     [SerializeField]
     private List<GameObject> _map1Objects = new List<GameObject>();
