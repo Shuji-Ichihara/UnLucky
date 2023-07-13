@@ -49,11 +49,16 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         DontDestroyOnLoad(this);
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnLoaded;
+        Player1Controller = PlayerSpawn.Instance.Player1.GetComponent<Player1Controller>();
+        Player2Controller = PlayerSpawn.Instance.Player2.GetComponent<Player2Controller>();
     }
 
     void Update()
     {
-        PlayerDamage();
+        if(Player1Controller != null && Player2Controller != null)
+        {
+            PlayerDamage();
+        }
     }
 
     /// <summary>
