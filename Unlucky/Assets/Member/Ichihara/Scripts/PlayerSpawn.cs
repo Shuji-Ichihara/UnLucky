@@ -8,15 +8,6 @@ public class PlayerSpawn : SingletonMonoBehaviour<PlayerSpawn>
     private List<GameObject> _playerPoints = new List<GameObject>();
     public List<GameObject> PlayerPoints => _playerPoints;
 
-    #region Players
-    [SerializeField]
-    private GameObject _player1 = null;
-    public GameObject Player1 { get; private set; }
-    [SerializeField]
-    private GameObject _player2 = null;
-    public GameObject Player2 { get; private set; }
-    #endregion
-
     // Start is called before the first frame update
     new private void Awake()
     {
@@ -30,7 +21,7 @@ public class PlayerSpawn : SingletonMonoBehaviour<PlayerSpawn>
     /// </summary>
     /// <param name="scene">デリゲート型の引数</param>
     /// <param name="mode">デリゲート型の引数</param>
-     public void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+    public void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
         // TODO : タイトル,リザルトのシーン名に変更
         if (SceneManager.GetActiveScene().name == "TitleScene"
@@ -43,11 +34,18 @@ public class PlayerSpawn : SingletonMonoBehaviour<PlayerSpawn>
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    /// <summary>
+    /// オブジェクトのインスタンス生成
+    /// </summary>
     public void InitGame()
     {
-        var player1Controller = _player1.GetComponent<Player1Controller>();
-        var player2Controller = _player2.GetComponent<Player2Controller>();
-        Player1 = Instantiate(_player1, _playerPoints[player1Controller.GamePosition].transform.position, Quaternion.identity);
-        Player2 = Instantiate(_player2, _playerPoints[player2Controller.GamePosition].transform.position, Quaternion.identity);
+        GameObject player1Object = MonoGameManager.Instance.Player1;
+        GameObject player2Object = MonoGameManager.Instance.Player2;
+        var player1Controller = player1Object.GetComponent<Player1Controller>();
+        var player2Controller = player2Object.GetComponent<Player2Controller>();
+        MonoGameManager.Instance.Player1 = Instantiate(player1Object,
+            _playerPoints[player1Controller.GamePosition].transform.position, Quaternion.identity);
+        MonoGameManager.Instance.Player2 = Instantiate(player2Object,
+            _playerPoints[player2Controller.GamePosition].transform.position, Quaternion.identity);
     }
 }
