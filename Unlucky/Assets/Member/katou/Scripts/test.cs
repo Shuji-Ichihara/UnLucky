@@ -3,23 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class test : MonoBehaviour
 {
     [SerializeField] private Scene scene;
+     bool isSceneChange  =false;
 
-    // Update is called once per frame
 
-    //  åƒÇ—èoÇµï˚ÅAäÊí£Ç¡ÇƒÇÀÅOÅO
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKey(KeyCode.J)&&Input.GetKey(KeyCode.A)&&!isSceneChange)
         {
-            
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                scene.LoadScene(SceneName.GameName.Scene2);
-            }
+                isSceneChange = true;
+                Debug.Log("www");
+                scene.sceneChange(SceneName.GameName.Scene2);
+                
         }
-        
+
+    
     }
 }
+
+    
+        
+    
+    
+
