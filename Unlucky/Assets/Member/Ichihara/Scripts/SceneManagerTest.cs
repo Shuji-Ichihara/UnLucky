@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManagerTest : MonoBehaviour
+public class SceneManagerTest : SingletonMonoBehaviour<SceneManagerTest>
 {
-    private void Awake()
+    private static int SceneCount = 0;
+
+    new private void Awake()
     {
         DontDestroyOnLoad(this);
     }
@@ -29,7 +31,9 @@ public class SceneManagerTest : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            SceneManager.LoadSceneAsync("TestScene2");
+            SceneCount++;
+            SceneCount %= SceneManager.sceneCountInBuildSettings;
+            SceneManager.LoadSceneAsync(SceneCount);
         }
     }
 }
