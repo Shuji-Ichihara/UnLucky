@@ -23,7 +23,7 @@ public class Player2Controller : PlayerBase
     // Start is called before the first frame update
     void Start()
     {
-        _player1Controller = MonoGameManager.Instance.Player1.GetComponent<Player1Controller>();
+        _player1Controller = MonoGameManager.Player1Controller;
         // レーン選択になる為
         _isEntried = false;
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
