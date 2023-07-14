@@ -23,11 +23,14 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         Stage3,
     }
     // 現在のステート
-    private GameSceneState _sceneState = GameSceneState.Stage1;
+    private GameSceneState SceneState = GameSceneState.Stage1;
 
     // プレイヤーキャラ
-    public static Player1Controller Player1Controller { get; set; }
-    public static Player2Controller Player2Controller { get; set; }
+    public GameObject Player1 = null;
+    public GameObject Player2 = null;
+    public static Player1Controller Player1Controller = null;
+    public static Player2Controller Player2Controller = null;
+
     //　マップ１～3を割り当てる
     [SerializeField]
     private List<GameObject> _map1Objects = new List<GameObject>();
@@ -48,14 +51,19 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     {
         DontDestroyOnLoad(this);
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += PlayerSpawn.Instance.OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnLoaded;
-        Player1Controller = PlayerSpawn.Instance.Player1.GetComponent<Player1Controller>();
-        Player2Controller = PlayerSpawn.Instance.Player2.GetComponent<Player2Controller>();
+    }
+
+    private void Start()
+    {
+        Player1Controller = Player1.GetComponent<Player1Controller>();
+        Player2Controller = Player2.GetComponent<Player2Controller>();
     }
 
     void Update()
     {
-        if(Player1Controller != null && Player2Controller != null)
+        if (Player1Controller != null && Player2Controller != null)
         {
             PlayerDamage();
         }
@@ -122,17 +130,19 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     /// </summary>
     private void CalculateDamagePlayer1()
     {
-        int stageNumber = (int)_sceneState;
+        int stageNumber = (int)SceneState;
         stageNumber %= _damages.Count;
         // 大ダメージの場合
         if (_unluckyNunber == Player1Controller.GamePosition)
         {
             Player1Controller.AccumulatedDamage += _damages[stageNumber].LargeDamage;
+            Debug.Log("Damage = " + Player1Controller.AccumulatedDamage);
         }
         // 小ダメージの場合
         else
         {
             Player1Controller.AccumulatedDamage += _damages[stageNumber].SmallDamage;
+            Debug.Log("Damage = " + Player1Controller.AccumulatedDamage);
         }
     }
 
@@ -141,15 +151,19 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     /// </summary>
     private void CalculateDamagePlayer2()
     {
-        int stageNumber = (int)_sceneState;
+        int stageNumber = (int)SceneState;
         stageNumber %= _damages.Count;
+        // 大ダメージの場合
         if (_unluckyNunber == Player2Controller.GamePosition)
         {
             Player2Controller.AccumulatedDamage += _damages[stageNumber].LargeDamage;
+            Debug.Log("Damage = " + Player2Controller.AccumulatedDamage);
         }
+        // 小ダメージの場合
         else
         {
             Player2Controller.AccumulatedDamage += _damages[stageNumber].SmallDamage;
+            Debug.Log("Damage = " + Player2Controller.AccumulatedDamage);
         }
     }
 
@@ -172,7 +186,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         _checkDamagePlayer1 = false;
         _checkDamagePlayer2 = false;
         // 生成するマップ決め
-        int stageNumber = (int)_sceneState;
+        int stageNumber = (int)SceneState;
         stageNumber %= _damages.Count;
         switch (stageNumber)
         {
@@ -209,7 +223,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
             return;
         }
         // ステート更新
-        _sceneState++;
+        SceneState++;
     }
 }
 
