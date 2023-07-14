@@ -29,7 +29,6 @@ public class SceneManagerTest : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            SceneManager.sceneLoaded += PlayerSpawn.Instance.OnSceneLoaded;
             SceneManager.LoadSceneAsync("TestScene2");
         }
     }
