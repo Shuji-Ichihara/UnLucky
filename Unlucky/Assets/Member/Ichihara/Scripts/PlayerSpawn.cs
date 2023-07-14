@@ -12,7 +12,6 @@ public class PlayerSpawn : SingletonMonoBehaviour<PlayerSpawn>
     new private void Awake()
     {
         DontDestroyOnLoad(this);
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     /// <summary>
@@ -27,11 +26,9 @@ public class PlayerSpawn : SingletonMonoBehaviour<PlayerSpawn>
         if (SceneManager.GetActiveScene().name == "TitleScene"
             || SceneManager.GetActiveScene().name == "ResultScene")
         {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
             return;
         }
         InitGame();
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     /// <summary>
@@ -39,13 +36,11 @@ public class PlayerSpawn : SingletonMonoBehaviour<PlayerSpawn>
     /// </summary>
     public void InitGame()
     {
-        GameObject player1Object = MonoGameManager.Instance.Player1;
-        GameObject player2Object = MonoGameManager.Instance.Player2;
-        var player1Controller = player1Object.GetComponent<Player1Controller>();
-        var player2Controller = player2Object.GetComponent<Player2Controller>();
-        MonoGameManager.Instance.Player1 = Instantiate(player1Object,
-            _playerPoints[player1Controller.GamePosition].transform.position, Quaternion.identity);
-        MonoGameManager.Instance.Player2 = Instantiate(player2Object,
-            _playerPoints[player2Controller.GamePosition].transform.position, Quaternion.identity);
+        GameObject player1Object = Instantiate(MonoGameManager.Instance.Player1);
+        GameObject player2Object = Instantiate(MonoGameManager.Instance.Player2);
+        MonoGameManager.Player1Controller = player1Object.GetComponent<Player1Controller>();
+        MonoGameManager.Player2Controller = player2Object.GetComponent<Player2Controller>();
+        player1Object.transform.position = _playerPoints[MonoGameManager.Player1Controller.GamePosition].transform.position;
+        player2Object.transform.position = _playerPoints[MonoGameManager.Player2Controller.GamePosition].transform.position;
     }
 }
