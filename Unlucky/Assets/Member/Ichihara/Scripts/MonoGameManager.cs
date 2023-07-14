@@ -44,8 +44,10 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     // はずれ番号
     private int _unluckyNunber = 0;
     // ダメージの計算が完了したかをチェック
-    private bool _checkDamagePlayer1 = false;
-    private bool _checkDamagePlayer2 = false;
+    private bool _isCheckPlayer1Damage = false;
+    private bool _isCheckPlayer2Damage = false;
+
+    private bool _isPlayAnim = false;
 
     new private void Awake()
     {
@@ -86,42 +88,20 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     /// </summary>
     private void PlayerDamage()
     {
-        if (Player1Controller.IsEntried == true && _checkDamagePlayer1 == false)
+        if (Player1Controller.IsEntried == true && _isCheckPlayer1Damage == false)
         {
-            switch (Player1Controller.GamePosition)
-            {
-                case 0:
-                    CalculateDamagePlayer1();
-                    break;
-                case 1:
-                    CalculateDamagePlayer1();
-                    break;
-                case 2:
-                    CalculateDamagePlayer1();
-                    break;
-                default:
-                    break;
-            }
-            _checkDamagePlayer1 = true;
+            CalculateDamagePlayer1();
+            _isCheckPlayer1Damage = true;
         }
-
-        if (Player2Controller.IsEntried == true && _checkDamagePlayer2 == false)
+        if (Player2Controller.IsEntried == true && _isCheckPlayer2Damage == false)
         {
-            switch (Player2Controller.GamePosition)
-            {
-                case 0:
-                    CalculateDamagePlayer2();
-                    break;
-                case 1:
-                    CalculateDamagePlayer2();
-                    break;
-                case 2:
-                    CalculateDamagePlayer2();
-                    break;
-                default:
-                    break;
-            }
-            _checkDamagePlayer2 = true;
+            CalculateDamagePlayer2();
+            _isCheckPlayer2Damage = true;
+        }
+        if(Player1Controller.IsEntried == true && Player2Controller.IsEntried == true && _isPlayAnim == false)
+        {
+            // TODO : ここにアニメーション再生を書き込む
+            _isPlayAnim = true;
         }
     }
 
@@ -136,13 +116,13 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         if (_unluckyNunber == Player1Controller.GamePosition)
         {
             Player1Controller.AccumulatedDamage += _damages[stageNumber].LargeDamage;
-            Debug.Log("Damage = " + Player1Controller.AccumulatedDamage);
+            //Debug.Log("Damage = " + Player1Controller.AccumulatedDamage);
         }
         // 小ダメージの場合
         else
         {
             Player1Controller.AccumulatedDamage += _damages[stageNumber].SmallDamage;
-            Debug.Log("Damage = " + Player1Controller.AccumulatedDamage);
+            //Debug.Log("Damage = " + Player1Controller.AccumulatedDamage);
         }
     }
 
@@ -157,13 +137,13 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         if (_unluckyNunber == Player2Controller.GamePosition)
         {
             Player2Controller.AccumulatedDamage += _damages[stageNumber].LargeDamage;
-            Debug.Log("Damage = " + Player2Controller.AccumulatedDamage);
+            //Debug.Log("Damage = " + Player2Controller.AccumulatedDamage);
         }
         // 小ダメージの場合
         else
         {
             Player2Controller.AccumulatedDamage += _damages[stageNumber].SmallDamage;
-            Debug.Log("Damage = " + Player2Controller.AccumulatedDamage);
+            //Debug.Log("Damage = " + Player2Controller.AccumulatedDamage);
         }
     }
 
@@ -183,8 +163,8 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
 
         // シーンが切り替わった時に Start が呼び出されない為
         // このタイミングで初期化する
-        _checkDamagePlayer1 = false;
-        _checkDamagePlayer2 = false;
+        _isCheckPlayer1Damage = false;
+        _isCheckPlayer2Damage = false;
         // 生成するマップ決め
         int stageNumber = (int)SceneState;
         stageNumber %= _damages.Count;
@@ -222,7 +202,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         {
             return;
         }
-        // ステート更新
+        // TODO : テスト用の為、コメントアウト必須
         SceneState++;
     }
 }
