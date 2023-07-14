@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        _player1Controller = PlayerSpawn.Instance.Player1.GetComponent<Player1Controller>();
-        _player2Controller = PlayerSpawn.Instance.Player2.GetComponent<Player2Controller>();
+        //_player1Controller = PlayerSpawn.Instance.Player1.GetComponent<Player1Controller>();
+        //_player2Controller = PlayerSpawn.Instance.Player2.GetComponent<Player2Controller>();
     }
     void Update()
     {
