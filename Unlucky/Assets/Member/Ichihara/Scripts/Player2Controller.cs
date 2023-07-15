@@ -99,7 +99,7 @@ public class Player2Controller : PlayerBase
 
     protected override void DisidePlayerPoint()
     {
-        if (Input.GetKeyDown(_entryKey) || CameraController.Instance.duration < 0.0f)
+        if (Input.GetKeyDown(_entryKey))
         {
             _isEntried = true;
         }
