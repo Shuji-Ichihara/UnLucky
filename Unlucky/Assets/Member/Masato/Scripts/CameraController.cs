@@ -12,6 +12,9 @@ public class CameraController : SingletonMonoBehaviour<CameraController>
     private Vector3 targetPosition;
     private bool isMoving = false;
 
+    private bool isMovePlayer = false;
+    private bool isLoopCourutine = false;
+
     private void Start()
     {
         startPosition = transform.position;
@@ -34,6 +37,20 @@ public class CameraController : SingletonMonoBehaviour<CameraController>
             {
                 transform.position = targetPosition;
                 isMoving = false;
+                isMovePlayer = true;
+            }
+        }
+
+        if (isMovePlayer)
+        {
+            MonoGameManager.Player1Controller.gameObject.transform.position += Vector3.down * 500.0f * Time.deltaTime;
+            MonoGameManager.Player2Controller.gameObject.transform.position += Vector3.down * 500.0f * Time.deltaTime;
+            isLoopCourutine = true;
+            if (isLoopCourutine)
+            {
+                MonoGameManager.Player1Controller.PlayAnimation();
+                MonoGameManager.Player2Controller.PlayAnimation();
+                isLoopCourutine = false;
             }
         }
     }
