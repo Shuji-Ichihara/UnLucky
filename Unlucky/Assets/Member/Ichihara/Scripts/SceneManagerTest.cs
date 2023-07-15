@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneManagerTest : SingletonMonoBehaviour<SceneManagerTest>
 {
     private static int SceneCount = 0;
+    float second;
 
     new private void Awake()
     {
@@ -15,7 +16,7 @@ public class SceneManagerTest : SingletonMonoBehaviour<SceneManagerTest>
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return) || second > 10)
         {
             int Player1Damage = Player1Controller.AccumulatedDamage;
             int Player2Damage = Player2Controller.AccumulatedDamage;
@@ -29,7 +30,7 @@ public class SceneManagerTest : SingletonMonoBehaviour<SceneManagerTest>
                 SceneManager.LoadSceneAsync("Win_P2");
             }
         }
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Q) || second > 10)
         {
             if(MonoGameManager.Instance.GameState == MonoGameManager.GameSceneState.Stage3)
             {

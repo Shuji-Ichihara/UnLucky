@@ -157,7 +157,7 @@ public class Player1Controller : PlayerBase
     private void OnTriggerEnter2D(Collider2D other)
     {
         // タグの名前を入れる
-        if (other.gameObject.CompareTag(""))
+        if (other.gameObject.CompareTag("Crush"))
         {
             StartCoroutine(PlayerAnimation());
         }
