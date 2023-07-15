@@ -139,6 +139,7 @@ public class Player1Controller : PlayerBase
     private IEnumerator PlayerAnimation()
     {
         float playerDisappearScale = 0.3f;
+        float playerRotateAngle = 5.0f;
         float playerScaleMagnitude = 0.99f;
         while (true)
         {
@@ -147,6 +148,7 @@ public class Player1Controller : PlayerBase
                 transform.localScale = Vector3.zero;
                 break;
             }
+            transform.localRotation *= Quaternion.AngleAxis(playerRotateAngle, Vector3.forward);
             transform.localScale *= playerScaleMagnitude;
             yield return null;
         }
