@@ -98,14 +98,6 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
             CalculateDamagePlayer2();
             _isCheckPlayer2Damage = true;
         }
-        /*
-        if(Player1Controller.IsEntried == true && Player2Controller.IsEntried == true && _isPlayAnim == false)
-        {
-            // TODO : ここにアニメーション再生を書き込む
-            Player1Controller.PlayAnimation();
-            Player2Controller.PlayAnimation();
-            _isPlayAnim = true;
-        }*/
     }
 
     /// <summary>
