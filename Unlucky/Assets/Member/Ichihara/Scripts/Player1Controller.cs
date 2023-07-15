@@ -139,7 +139,7 @@ public class Player1Controller : PlayerBase
     private IEnumerator PlayerAnimation()
     {
         float playerDisappearScale = 0.3f;
-        float playerRotateAngle = 5.0f;
+        float playerRotateAngle = 3.0f;
         float playerScaleMagnitude = 0.99f;
         while (true)
         {

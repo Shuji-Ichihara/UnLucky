@@ -157,7 +157,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
         // TODO : タイトル,リザルトのシーン名に変更
-        if (SceneManager.GetActiveScene().name == "TitleScene"
+        if (SceneManager.GetActiveScene().name == "Title"
             || SceneManager.GetActiveScene().name == "ResultScene")
         {
             return;
@@ -200,7 +200,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     private void OnSceneUnLoaded(UnityEngine.SceneManagement.Scene scene)
     {
         // TODO : タイトル,リザルトのシーン名に変更
-        if (SceneManager.GetActiveScene().name == "TitleScene"
+        if (SceneManager.GetActiveScene().name == "Title"
             || SceneManager.GetActiveScene().name == "ResultScene")
         {
             SceneState = 0;

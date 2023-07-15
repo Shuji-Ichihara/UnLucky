@@ -23,7 +23,7 @@ public class PlayerSpawn : SingletonMonoBehaviour<PlayerSpawn>
     public void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
         // TODO : タイトル,リザルトのシーン名に変更
-        if (SceneManager.GetActiveScene().name == "TitleScene"
+        if (SceneManager.GetActiveScene().name == "Title"
             || SceneManager.GetActiveScene().name == "ResultScene")
         {
             return;

@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Ichihara/Scenes/TitleScene.unity
     guid: 64bbde7522a8fa64bb32c1aaa40623d4
+  - enabled: 1
+    path: Assets/Member/Yuta/Scenes/Title.unity
+    guid: da1409d56e39afb40941399c223b1a33
   - enabled: 1
     path: Assets/Member/Ichihara/Scenes/TestScene.unity
     guid: 89725de148c9e7946843df2f0ff43e86
@@ -20,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Member/Ichihara/Scenes/ResultScene.unity
     guid: b9dd1b8f395fcdc45abea4b26bad8248
+  - enabled: 1
+    path: Assets/Member/Yuta/Scenes/Win_P1.unity
+    guid: 899a28cdc15d65e4889bafcfec6f2c50
+  - enabled: 1
+    path: Assets/Member/Yuta/Scenes/Win_P2.unity
+    guid: 311ef1d4378f55043a17b043ff1a85a3
   m_configObjects: {}
