@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : SingletonMonoBehaviour<CameraController>
 {
     public float duration = 3f; // ˆÚ“®‚É‚©‚©‚éŠÔi•bj
     public float distance = 1f; // ˆÚ“®‚·‚é‹——£

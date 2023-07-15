@@ -99,7 +99,7 @@ public class Player1Controller : PlayerBase
 
     protected override void DisidePlayerPoint()
     {
-        if (Input.GetKeyDown(_entryKey))
+        if (Input.GetKeyDown(_entryKey) || CameraController.Instance.duration < 0.0f)
         {
             _isEntried = true;
         }
@@ -129,8 +129,8 @@ public class Player1Controller : PlayerBase
 
     public override void PlayAnimation()
     {
-        if (MonoGameManager.Instance.SceneState == MonoGameManager.GameSceneState.Stage2
-            || MonoGameManager.Instance.SceneState == MonoGameManager.GameSceneState.Stage3)
+        if (MonoGameManager.Instance.GameState == MonoGameManager.GameSceneState.Stage2
+            || MonoGameManager.Instance.GameState == MonoGameManager.GameSceneState.Stage3)
         {
             StartCoroutine(PlayerAnimation());
         }

@@ -23,7 +23,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         Stage3,
     }
     // 現在のステート
-    public GameSceneState SceneState = GameSceneState.Stage1;
+    public GameSceneState GameState = GameSceneState.Stage1;
 
     // プレイヤーキャラ
     public GameObject Player1 = null;
@@ -112,7 +112,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     /// </summary>
     private void CalculateDamagePlayer1()
     {
-        int stageNumber = (int)SceneState;
+        int stageNumber = (int)GameState;
         stageNumber %= _damages.Count;
         // 大ダメージの場合
         if (_unluckyNunber == Player1Controller.GamePosition)
@@ -133,7 +133,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     /// </summary>
     private void CalculateDamagePlayer2()
     {
-        int stageNumber = (int)SceneState;
+        int stageNumber = (int)GameState;
         stageNumber %= _damages.Count;
         // 大ダメージの場合
         if (_unluckyNunber == Player2Controller.GamePosition)
@@ -158,7 +158,8 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     {
         // TODO : タイトル,リザルトのシーン名に変更
         if (SceneManager.GetActiveScene().name == "TitleScene"
-            || SceneManager.GetActiveScene().name == "ResultScene")
+            || SceneManager.GetActiveScene().name == "Win_P1"
+            || SceneManager.GetActiveScene().name == "Win_P2")
         {
             return;
         }
@@ -169,7 +170,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         _isCheckPlayer2Damage = false;
         _isPlayAnim = false;
         // 生成するマップ決め
-        int stageNumber = (int)SceneState;
+        int stageNumber = (int)GameState;
         stageNumber %= _damages.Count;
         switch (stageNumber)
         {
@@ -201,12 +202,13 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     {
         // TODO : タイトル,リザルトのシーン名に変更
         if (SceneManager.GetActiveScene().name == "TitleScene"
-            || SceneManager.GetActiveScene().name == "ResultScene")
+            || SceneManager.GetActiveScene().name == "TitleScene3")
         {
-            SceneState = 0;
+            GameState = 0;
             return;
         }
-        SceneState++;
+        GameState++;
+        Debug.Log(GameState);
     }
 }
 
