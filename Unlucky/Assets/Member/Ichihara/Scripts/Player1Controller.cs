@@ -126,4 +126,29 @@ public class Player1Controller : PlayerBase
         }
         return nowSprite;
     }
+
+    public override void PlayAnimation()
+    {
+        if (MonoGameManager.Instance.SceneState == MonoGameManager.GameSceneState.Stage2
+            || MonoGameManager.Instance.SceneState == MonoGameManager.GameSceneState.Stage3)
+        {
+            StartCoroutine(PlayerAnimation());
+        }
+    }
+
+    private IEnumerator PlayerAnimation()
+    {
+        float playerDisappearScale = 0.3f;
+        float playerScaleMagnitude = 0.99f;
+        while (true)
+        {
+            if (transform.localScale.x < playerDisappearScale && transform.localScale.y < playerDisappearScale)
+            {
+                transform.localScale = Vector3.zero;
+                break;
+            }
+            transform.localScale *= playerScaleMagnitude;
+            yield return null;
+        }
+    }
 }
