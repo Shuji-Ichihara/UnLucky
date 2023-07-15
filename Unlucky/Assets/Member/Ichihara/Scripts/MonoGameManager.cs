@@ -23,7 +23,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         Stage3,
     }
     // 現在のステート
-    private GameSceneState SceneState = GameSceneState.Stage1;
+    public GameSceneState SceneState = GameSceneState.Stage1;
 
     // プレイヤーキャラ
     public GameObject Player1 = null;
@@ -101,6 +101,8 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         if(Player1Controller.IsEntried == true && Player2Controller.IsEntried == true && _isPlayAnim == false)
         {
             // TODO : ここにアニメーション再生を書き込む
+            Player1Controller.PlayAnimation();
+            Player2Controller.PlayAnimation();
             _isPlayAnim = true;
         }
     }
@@ -165,6 +167,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         // このタイミングで初期化する
         _isCheckPlayer1Damage = false;
         _isCheckPlayer2Damage = false;
+        _isPlayAnim = false;
         // 生成するマップ決め
         int stageNumber = (int)SceneState;
         stageNumber %= _damages.Count;
@@ -200,9 +203,9 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
         if (SceneManager.GetActiveScene().name == "TitleScene"
             || SceneManager.GetActiveScene().name == "ResultScene")
         {
+            SceneState = 0;
             return;
         }
-        // TODO : テスト用の為、コメントアウト必須
         SceneState++;
     }
 }
