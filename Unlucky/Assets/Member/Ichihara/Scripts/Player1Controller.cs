@@ -153,4 +153,13 @@ public class Player1Controller : PlayerBase
             yield return null;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // タグの名前を入れる
+        if (other.gameObject.CompareTag(""))
+        {
+            StartCoroutine(PlayerAnimation());
+        }
+    }
 }
