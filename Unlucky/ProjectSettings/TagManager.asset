@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fade
   - fade
+  - Crush
   layers:
   - Default
   - TransparentFX

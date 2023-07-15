@@ -151,7 +151,8 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     {
         // TODO : タイトル,リザルトのシーン名に変更
         if (SceneManager.GetActiveScene().name == "Title"
-            || SceneManager.GetActiveScene().name == "ResultScene")
+            || SceneManager.GetActiveScene().name == "Win_P1"
+            || SceneManager.GetActiveScene().name == "Win_P2")
         {
             return;
         }
@@ -194,7 +195,7 @@ public class MonoGameManager : SingletonMonoBehaviour<MonoGameManager>
     {
         // TODO : タイトル,リザルトのシーン名に変更
         if (SceneManager.GetActiveScene().name == "Title"
-            || SceneManager.GetActiveScene().name == "ResultScene")
+            ||GameState == GameSceneState.Stage3)
         {
             GameState = 0;
             return;

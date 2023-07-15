@@ -24,7 +24,8 @@ public class PlayerSpawn : SingletonMonoBehaviour<PlayerSpawn>
     {
         // TODO : タイトル,リザルトのシーン名に変更
         if (SceneManager.GetActiveScene().name == "Title"
-            || SceneManager.GetActiveScene().name == "ResultScene")
+            || SceneManager.GetActiveScene().name == "Win_P1"
+            || SceneManager.GetActiveScene().name == "Win_P2")
         {
             return;
         }

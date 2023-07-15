@@ -136,7 +136,7 @@ public class Player1Controller : PlayerBase
         }
     }
 
-    private IEnumerator PlayerAnimation()
+    public IEnumerator PlayerAnimation()
     {
         float playerDisappearScale = 0.3f;
         float playerRotateAngle = 3.0f;
